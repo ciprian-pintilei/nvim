@@ -15,7 +15,7 @@ return {
   opts = {
     notify_on_error = false,
     format_on_save = function(bufnr)
-      local disable_filetypes = { c = true, cpp = true, python = true }
+      local disable_filetypes = { c = true, cpp = true }
       if disable_filetypes[vim.bo[bufnr].filetype] then
         return nil
       else
@@ -27,7 +27,9 @@ return {
     end,
     formatters_by_ft = {
       lua = { 'stylua' },
-      python = { 'black', 'isort' },
+      -- Run ruff's autofix + import sort, then ruff's formatter last.
+      -- These run sequentially (list = sequential in conform).
+      python = { 'ruff_fix', 'ruff_organize_imports', 'ruff_format' },
       javascript = { 'prettier' },
       json = { 'prettier' },
       markdown = { 'markdownlint-cli2' },

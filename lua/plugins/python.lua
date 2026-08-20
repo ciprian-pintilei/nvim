@@ -3,14 +3,18 @@ return {
     "neovim/nvim-lspconfig",
     opts = {
       servers = {
-        pyright = {
+        basedpyright = {
           settings = {
-            python = {
+            basedpyright = {
               analysis = {
                 autoSearchPaths = true,
                 useLibraryCodeForTypes = true,
                 diagnosticMode = "workspace",
                 exclude = { "**/.venv/**", "**/venv/**", "**/site-packages/**", "**/dist/**" },
+                diagnosticSeverityOverrides = {
+                  reportUnannotatedClassAttribute = "none",
+                  reportUnusedCallResult = "none",
+                },
               },
             },
           },

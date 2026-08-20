@@ -4,3 +4,6 @@
 require('config.remote_clipboard').setup()
 vim.opt.relativenumber = false
 vim.g.autoformat = false
+
+-- Use basedpyright instead of pyright for Python (lang.python extra)
+vim.g.lazyvim_python_lsp = "basedpyright"
